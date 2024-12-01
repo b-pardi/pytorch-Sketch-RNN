@@ -48,6 +48,13 @@ def eval_epoch(model, data_loader, device):
         loss_meter.update(loss.item(), data.size(0))
     return loss_meter.avg
 
+class CollateFn:
+    def __init__(self, max_seq_len):
+        self.max_seq_len = max_seq_len
+
+    def __call__(self, batch):
+        return collate_drawings(batch, self.max_seq_len)
+
 
 def train_sketch_rnn(args):
     torch.manual_seed(884)
@@ -72,7 +79,7 @@ def train_sketch_rnn(args):
     )
 
     # initialize data loaders
-    collate_fn = lambda x : collate_drawings(x, args.max_seq_len)
+    collate_fn = CollateFn(args.max_seq_len)
     train_loader = DataLoader(
         train_data,
         batch_size=args.batch_size,
