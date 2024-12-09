@@ -82,30 +82,31 @@ def draw_strokes(data, factor=0.2, svg_filename='sample.svg', show=False):
     if show:
         os.system(f"start {svg_filename}" if os.name == 'nt' else f"open {svg_filename}")
 
+def generate():
 
-# Assume `hps` contains hyperparameters used during training
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    # Assume `hps` contains hyperparameters used during training
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-# Load the trained model
-hps = hparams()
-model = SketchRNN(hps)
-model.load_state_dict(torch.load('model1_save/model.pt', map_location=device))
+    # Load the trained model
+    hps = hparams()
+    model = SketchRNN(hps)
+    model.load_state_dict(torch.load('profiles/200epochs/model_save/model.pt', map_location=device))
 
-# load sample
-train_strokes, valid_strokes, test_strokes = load_npz_to_tensor('data/cat.npz')
-cat_sample_data = test_strokes[0]
+    # load sample
+    train_strokes, valid_strokes, test_strokes = load_npz_to_tensor('data/cat.npz')
+    cat_sample_data = test_strokes[0]
 
-draw_strokes(cat_sample_data, factor=0.8, svg_filename="true_cat.svg")
-print(cat_sample_data)
-# conditional sampling
-sampled_s, sampled_p = sample_unconditional(model, T=1, device=device)
-sampled_strokes = []
-for i in range(sampled_s.shape[0]):
-    dx, dy = sampled_s[i].tolist()
-    pen_state = sampled_p[i].item()
-    sampled_strokes.append([dx, dy, pen_state])
-draw_strokes(torch.tensor(sampled_strokes, dtype=torch.float32), factor=0.02, svg_filename="fake_cat.svg")
+    draw_strokes(cat_sample_data, factor=0.8, svg_filename="true_cat.svg")
+    print(cat_sample_data)
+    # conditional sampling
+    sampled_s, sampled_p = sample_unconditional(model, T=1, device=device)
+    sampled_strokes = []
+    for i in range(sampled_s.shape[0]):
+        dx, dy = sampled_s[i].tolist()
+        pen_state = sampled_p[i].item()
+        sampled_strokes.append([dx, dy, pen_state])
+    draw_strokes(torch.tensor(sampled_strokes, dtype=torch.float32), factor=0.02, svg_filename="fake_cat.svg")
 
-print("Sampled X (strokes):", sampled_s)
-print("Sampled V (pen state):", sampled_p)
+    print("Sampled X (strokes):", sampled_s)
+    print("Sampled V (pen state):", sampled_p)
 

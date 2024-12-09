@@ -1,0 +1,472 @@
+    CALL: hparam_parser in ['C:\\Users\\Brandon\\Documents\\00 Programs 00\\', 'sketchrnn-pytorch\\sketch_rnn\\hparams.py']:8
+    Arguments: 
+
+    RETURN: ArgumentParser(prog='trace_train.py', usage=None, description=None, formatter_class=<class 'argparse.HelpFormatter'>, conflict_handler='error', add_help=False)
+
+    CALL: generate in sketchrnn-pytorch\infer.py:85
+    Arguments: 
+
+        CALL: hparams in sketchrnn-pytorch\sketch_rnn\hparams.py:46
+        Arguments: 
+
+            CALL: hparam_parser in sketchrnn-pytorch\sketch_rnn\hparams.py:8
+            Arguments: 
+
+            RETURN: ArgumentParser(prog='trace_train.py', usage=None, description=None, formatter_class=<class 'argparse.HelpFormatter'>, conflict_handler='error', add_help=False)
+
+        RETURN: Namespace(max_seq_len=250, enc_model='lstm', dec_model='layer_norm', enc_rnn_size=256, dec_rnn_size=512, z_size=128, num_mixture=20, r_dropout=0.1, kl_weight=0.5, kl_weight_start=0.01, kl_tolerance=0.2, kl_decay_rate=0.99995, reg_covar=1e-06, batch_size=100, lr=0.001, lr_decay=0.9999, min_lr=1e-05, grad_clip=1.0, data_set='cat.npz', random_scale_factor=0.15, augment_stroke_prob=0.1)
+
+        CALL: __init__ in sketchrnn-pytorch\sketch_rnn\model.py:48
+        Arguments: self=<Unprintable SketchRNN>, hps=Namespace(max_seq_len=250, enc_model='lstm', dec_model='layer_norm', enc_rnn_size=256, dec_rnn_size=512, z_size=128, num_mixture=20, r_dropout=0.1, kl_weight=0.5, kl_weight_start=0.01, kl_tolerance=0.2, kl_decay_rate=0.99995, reg_covar=1e-06, batch_size=100, lr=0.001, lr_decay=0.9999, min_lr=1e-05, grad_clip=1.0, data_set='cat.npz', random_scale_factor=0.15, augment_stroke_prob=0.1)
+
+            CALL: __init__ in sketchrnn-pytorch\sketch_rnn\model.py:19
+            Arguments: self=<Unprintable Encoder>, hidden_size=256, z_size=128
+
+                CALL: reset_parameters in sketchrnn-pytorch\sketch_rnn\model.py:26
+                Arguments: self=Encoder(
+  (rnn): LSTM(5, 256, batch_first=True, bidirectional=True)
+  (output): Linear(in_features=512, out_features=256, bias=True)
+)
+
+                    CALL: init_orthogonal_ in sketchrnn-pytorch\sketch_rnn\rnn.py:12
+                    Arguments: weight=Tensor(shape=(1024, 256), dtype=torch.float32, device=cpu), hsize=256
+
+                    RETURN: None
+
+                    CALL: init_orthogonal_ in sketchrnn-pytorch\sketch_rnn\rnn.py:12
+                    Arguments: weight=Tensor(shape=(1024, 256), dtype=torch.float32, device=cpu), hsize=256
+
+                    RETURN: None
+
+                RETURN: None
+
+            RETURN: None
+
+            CALL: __init__ in sketchrnn-pytorch\sketch_rnn\rnn.py:97
+            Arguments: self=<Unprintable LayerNormLSTMCell>, input_size=133, hidden_size=512, forget_bias=1.0, r_dropout=0.1
+
+                CALL: __init__ in sketchrnn-pytorch\sketch_rnn\rnn.py:71
+                Arguments: self=<Unprintable ChunkLayerNorm>, num_units=512, chunks=4, eps=1e-05, affine=True
+
+                    CALL: reset_parameters in sketchrnn-pytorch\sketch_rnn\rnn.py:82
+                    Arguments: self=ChunkLayerNorm()
+
+                    RETURN: None
+
+                RETURN: None
+
+                CALL: reset_parameters in sketchrnn-pytorch\sketch_rnn\rnn.py:113
+                Arguments: self=LayerNormLSTMCell(
+  (r_dropout): Dropout(p=0.1, inplace=False)
+  (layernorm_h): ChunkLayerNorm()
+  (layernorm_c): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+)
+
+                    CALL: init_orthogonal_ in sketchrnn-pytorch\sketch_rnn\rnn.py:12
+                    Arguments: weight=Tensor(shape=(2048, 512), dtype=torch.float32, device=cpu), hsize=512
+
+                    RETURN: None
+
+                    CALL: reset_parameters in sketchrnn-pytorch\sketch_rnn\rnn.py:82
+                    Arguments: self=ChunkLayerNorm()
+
+                    RETURN: None
+
+                RETURN: None
+
+            RETURN: None
+
+            CALL: __init__ in sketchrnn-pytorch\sketch_rnn\rnn.py:334
+            Arguments: self=<Unprintable LSTMLayer>, cell=LayerNormLSTMCell(
+  (r_dropout): Dropout(p=0.1, inplace=False)
+  (layernorm_h): ChunkLayerNorm()
+  (layernorm_c): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+), batch_first=True, reverse=False
+
+                CALL: reset_parameters in sketchrnn-pytorch\sketch_rnn\rnn.py:344
+                Arguments: self=LSTMLayer(
+  (cell): LayerNormLSTMCell(
+    (r_dropout): Dropout(p=0.1, inplace=False)
+    (layernorm_h): ChunkLayerNorm()
+    (layernorm_c): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+  )
+)
+
+                    CALL: reset_parameters in sketchrnn-pytorch\sketch_rnn\rnn.py:113
+                    Arguments: self=LayerNormLSTMCell(
+  (r_dropout): Dropout(p=0.1, inplace=False)
+  (layernorm_h): ChunkLayerNorm()
+  (layernorm_c): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+)
+
+                        CALL: reset_parameters in sketchrnn-pytorch\sketch_rnn\rnn.py:82
+                        Arguments: self=ChunkLayerNorm()
+
+                        RETURN: None
+
+                    RETURN: None
+
+                RETURN: None
+
+            RETURN: None
+
+    CALL: state_size in sketchrnn-pytorch\sketch_rnn\rnn.py:119
+    Arguments: self=LayerNormLSTMCell(
+  (r_dropout): Dropout(p=0.1, inplace=False)
+  (layernorm_h): ChunkLayerNorm()
+  (layernorm_c): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+)
+
+    RETURN: 1024
+
+    CALL: state_size in sketchrnn-pytorch\sketch_rnn\rnn.py:119
+    Arguments: self=LayerNormLSTMCell(
+  (r_dropout): Dropout(p=0.1, inplace=False)
+  (layernorm_h): ChunkLayerNorm()
+  (layernorm_c): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+)
+
+    RETURN: 1024
+
+    CALL: state_size in sketchrnn-pytorch\sketch_rnn\rnn.py:119
+    Arguments: self=LayerNormLSTMCell(
+  (r_dropout): Dropout(p=0.1, inplace=False)
+  (layernorm_h): ChunkLayerNorm()
+  (layernorm_c): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+)
+
+    RETURN: 1024
+
+            CALL: __init__ in sketchrnn-pytorch\sketch_rnn\param_layer.py:10
+            Arguments: self=<Unprintable ParameterLayer>, input_size=512, k=20, d=2
+
+                CALL: reset_parameters in sketchrnn-pytorch\sketch_rnn\param_layer.py:16
+                Arguments: self=ParameterLayer(
+  (linear): Linear(in_features=512, out_features=123, bias=True)
+)
+
+                RETURN: None
+
+            RETURN: None
+
+            CALL: __init__ in sketchrnn-pytorch\sketch_rnn\objective.py:30
+            Arguments: self=<Unprintable KLLoss>, kl_weight=0.5, eta_min=0.01, R=0.99995, kl_min=0.2
+
+            RETURN: None
+
+            CALL: __init__ in sketchrnn-pytorch\sketch_rnn\objective.py:76
+            Arguments: self=<Unprintable DrawingLoss>, reg_covar=1e-06
+
+            RETURN: None
+
+            CALL: reset_parameters in sketchrnn-pytorch\sketch_rnn\model.py:75
+            Arguments: self=SketchRNN(
+  (encoder): Encoder(
+    (rnn): LSTM(5, 256, batch_first=True, bidirectional=True)
+    (output): Linear(in_features=512, out_features=256, bias=True)
+  )
+  (cell): LayerNormLSTMCell(
+    (r_dropout): Dropout(p=0.1, inplace=False)
+    (layernorm_h): ChunkLayerNorm()
+    (layernorm_c): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+  )
+  (decoder): RecursiveScriptModule(
+    original_name=LSTMLayer
+    (cell): RecursiveScriptModule(
+      original_name=LayerNormLSTMCell
+      (r... (truncated)
+
+                CALL: <lambda> in sketchrnn-pytorch\sketch_rnn\model.py:76
+                Arguments: m=Encoder(
+  (rnn): LSTM(5, 256, batch_first=True, bidirectional=True)
+  (output): Linear(in_features=512, out_features=256, bias=True)
+)
+
+                RETURN: True
+
+                CALL: reset_parameters in sketchrnn-pytorch\sketch_rnn\model.py:26
+                Arguments: self=Encoder(
+  (rnn): LSTM(5, 256, batch_first=True, bidirectional=True)
+  (output): Linear(in_features=512, out_features=256, bias=True)
+)
+
+                RETURN: None
+
+                CALL: <lambda> in sketchrnn-pytorch\sketch_rnn\model.py:76
+                Arguments: m=LayerNormLSTMCell(
+  (r_dropout): Dropout(p=0.1, inplace=False)
+  (layernorm_h): ChunkLayerNorm()
+  (layernorm_c): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+)
+
+                RETURN: True
+
+                CALL: reset_parameters in sketchrnn-pytorch\sketch_rnn\rnn.py:113
+                Arguments: self=LayerNormLSTMCell(
+  (r_dropout): Dropout(p=0.1, inplace=False)
+  (layernorm_h): ChunkLayerNorm()
+  (layernorm_c): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+)
+
+                RETURN: None
+
+                CALL: <lambda> in sketchrnn-pytorch\sketch_rnn\model.py:76
+                Arguments: m=RecursiveScriptModule(
+  original_name=LSTMLayer
+  (cell): RecursiveScriptModule(
+    original_name=LayerNormLSTMCell
+    (r_dropout): RecursiveScriptModule(original_name=Dropout)
+    (layernorm_h): RecursiveScriptModule(original_name=ChunkLayerNorm)
+    (layernorm_c): RecursiveScriptModule(original_name=LayerNorm)
+  )
+)
+
+                RETURN: False
+
+                CALL: reset_parameters in sketchrnn-pytorch\sketch_rnn\param_layer.py:16
+                Arguments: self=ParameterLayer(
+  (linear): Linear(in_features=512, out_features=123, bias=True)
+)
+
+                RETURN: None
+
+                CALL: reset_parameters in sketchrnn-pytorch\sketch_rnn\objective.py:38
+                Arguments: self=KLLoss()
+
+                RETURN: None
+
+                CALL: reset_parameters in sketchrnn-pytorch\sketch_rnn\objective.py:80
+                Arguments: self=DrawingLoss()
+
+                RETURN: None
+
+            RETURN: None
+
+        RETURN: None
+
+        CALL: load_npz_to_tensor in sketchrnn-pytorch\infer.py:14
+        Arguments: npz_file='data/cat.npz'
+
+            CALL: <listcomp> in ['C:\\Users\\Brandon\\Documents\\00 Programs 00\\', 'sketchrnn-pytorch\\infer.py']:25
+            Arguments: .0=<iterator object at 0x000001A038252740>
+
+            RETURN: [tensor([[  -3.,   -8.,    0.],
+        [   2.,  -38.,    0.],
+        [  14.,    8.,    0.],
+        [  20.,   26.,    0.],
+        [  22.,  -14.,    0.],
+        [  10.,   -3.,    0.],
+        [  51.,    0.,    0.],
+        [  31.,   -5.,    0.],
+        [  12.,    3.,    0.],
+        [   5.,   -6.,    0.],
+        [   7.,  -21.,    0.],
+        [   5.,   -3.,    0.],
+        [   9.,   31.,    0.],
+        [   0.,   91.,    0.],
+        [  -2.,    8.,    0.],
+        [ -12.,   11.,    0.],
+   ... (truncated)
+
+            CALL: <listcomp> in ['C:\\Users\\Brandon\\Documents\\00 Programs 00\\', 'sketchrnn-pytorch\\infer.py']:26
+            Arguments: .0=<iterator object at 0x000001A07AFE7F40>
+
+            RETURN: [tensor([[  23.,  -12.,    0.],
+        [  29.,  -26.,    0.],
+        [  11.,  -15.,    0.],
+        [  16.,  -48.,    0.],
+        [  23.,  -42.,    0.],
+        [  27.,  -22.,    0.],
+        [  26.,  -11.,    0.],
+        [  30.,   -8.,    0.],
+        [  22.,   -2.,    0.],
+        [  10.,    0.,    0.],
+        [   1.,    5.,    0.],
+        [ -53.,   26.,    0.],
+        [ -36.,   44.,    0.],
+        [ -16.,   35.,    0.],
+        [ -43.,   66.,    0.],
+        [ -51.,   34.,    0.],
+   ... (truncated)
+
+            CALL: <listcomp> in ['C:\\Users\\Brandon\\Documents\\00 Programs 00\\', 'sketchrnn-pytorch\\infer.py']:27
+            Arguments: .0=<iterator object at 0x000001A07AFE7F40>
+
+            RETURN: [tensor([[ -12.,    1.,    0.],
+        [  -6.,    5.,    0.],
+        [ -29.,   26.,    0.],
+        [ -21.,   27.,    0.],
+        [  -6.,   14.,    0.],
+        [   0.,   25.,    0.],
+        [   4.,   10.,    0.],
+        [  35.,   31.,    0.],
+        [  28.,    8.,    0.],
+        [  24.,    0.,    0.],
+        [  19.,   -4.,    0.],
+        [  13.,   -7.,    0.],
+        [  15.,  -18.,    0.],
+        [   7.,  -13.,    0.],
+        [   4.,  -31.,    0.],
+        [  -2.,  -40.,    0.],
+   ... (truncated)
+
+        RETURN: ([tensor([[  -3.,   -8.,    0.],
+        [   2.,  -38.,    0.],
+        [  14.,    8.,    0.],
+        [  20.,   26.,    0.],
+        [  22.,  -14.,    0.],
+        [  10.,   -3.,    0.],
+        [  51.,    0.,    0.],
+        [  31.,   -5.,    0.],
+        [  12.,    3.,    0.],
+        [   5.,   -6.,    0.],
+        [   7.,  -21.,    0.],
+        [   5.,   -3.,    0.],
+        [   9.,   31.,    0.],
+        [   0.,   91.,    0.],
+        [  -2.,    8.,    0.],
+        [ -12.,   11.,    0.],
+  ... (truncated)
+
+        CALL: draw_strokes in sketchrnn-pytorch\infer.py:42
+        Arguments: data=Tensor(shape=(69, 3), dtype=torch.float32, device=cpu), factor=0.8, svg_filename='true_cat.svg', show=False
+
+            CALL: get_bounds in sketchrnn-pytorch\infer.py:32
+            Arguments: data=array([[-12.,   1.,   0.],
+       [ -6.,   5.,   0.],
+       [-29.,  26.,   0.],
+       ...,
+       [-53.,   7.,   0.],
+       [-26.,   8.,   0.],
+       [ -6.,   7.,   1.]], dtype=float32), factor=0.8
+
+            RETURN: (-97.5, 158.75, -43.75, 183.75)
+
+        RETURN: None
+
+    CALL: sample_unconditional in sketchrnn-pytorch\sketch_rnn\model.py:156
+    Arguments: model=SketchRNN(
+  (encoder): Encoder(
+    (rnn): LSTM(5, 256, batch_first=True, bidirectional=True)
+    (output): Linear(in_features=512, out_features=256, bias=True)
+  )
+  (cell): LayerNormLSTMCell(
+    (r_dropout): Dropout(p=0.1, inplace=False)
+    (layernorm_h): ChunkLayerNorm()
+    (layernorm_c): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+  )
+  (decoder): RecursiveScriptModule(
+    original_name=LSTMLayer
+    (cell): RecursiveScriptModule(
+      original_name=LayerNormLSTMCell
+      (r... (truncated), T=1, z_scale=1, device=device(type='cuda')
+
+    CALL: sample_from_z in sketchrnn-pytorch\sketch_rnn\model.py:131
+    Arguments: model=SketchRNN(
+  (encoder): Encoder(
+    (rnn): LSTM(5, 256, batch_first=True, bidirectional=True)
+    (output): Linear(in_features=512, out_features=256, bias=True)
+  )
+  (cell): LayerNormLSTMCell(
+    (r_dropout): Dropout(p=0.1, inplace=False)
+    (layernorm_h): ChunkLayerNorm()
+    (layernorm_c): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+  )
+  (decoder): RecursiveScriptModule(
+    original_name=LSTMLayer
+    (cell): RecursiveScriptModule(
+      original_name=LayerNormLSTMCell
+      (r... (truncated), z=Tensor(shape=(1, 128), dtype=torch.float32, device=cuda:0), T=1
+
+    CALL: forward in sketchrnn-pytorch\sketch_rnn\param_layer.py:19
+    Arguments: self=ParameterLayer(
+  (linear): Linear(in_features=512, out_features=123, bias=True)
+), x=Tensor(shape=(1, 512), dtype=torch.float32, device=cuda:0), T=1
+
+    RETURN: (tensor([[ -9.5321,  -9.4296,  -7.2981,  -1.9069, -10.3415,  -1.9664,  -1.0166,
+          -9.5341,  -9.9148,  -2.7914,  -7.8320,  -5.8698,  -2.2846,  -1.7709,
+          -6.7532,  -6.3513, -10.1085,  -9.5420,  -5.5021,  -5.2892]],
+       device='cuda:0'), tensor([[[ 0.9167,  2.1144],
+         [ 1.4548,  2.9670],
+         [ 1.2972, -0.0063],
+         [ 1.1038,  1.1894],
+         [ 0.5439,  1.5259],
+         [-0.3688,  0.6670],
+         [ 0.1251,  0.5731],
+         [ 2.0812,  0.5483],
+         [ 1.... (truncated)
+
+        CALL: sample_gmm in sketchrnn-pytorch\sketch_rnn\utils\gmm.py:32
+        Arguments: mix_logp=Tensor(shape=(1, 20), dtype=torch.float32, device=cuda:0), means=Tensor(shape=(1, 20, 2), dtype=torch.float32, device=cuda:0), scales=Tensor(shape=(1, 20, 2), dtype=torch.float32, device=cuda:0), corrs=Tensor(shape=(1, 20), dtype=torch.float32, device=cuda:0)
+
+            CALL: compute_cov2d in sketchrnn-pytorch\sketch_rnn\utils\gmm.py:15
+            Arguments: scales=Tensor(shape=(1, 20, 2), dtype=torch.float32, device=cuda:0), corrs=Tensor(shape=(1, 20), dtype=torch.float32, device=cuda:0)
+
+            RETURN: Tensor(shape=(1, 20, 2, 2), dtype=torch.float32, device=cuda:0)
+
+        RETURN: Tensor(shape=(1, 2), dtype=torch.float32, device=cuda:0)
+
+    CALL: forward in sketchrnn-pytorch\sketch_rnn\param_layer.py:19
+    Arguments: self=ParameterLayer(
+  (linear): Linear(in_features=512, out_features=123, bias=True)
+), x=Tensor(shape=(1, 512), dtype=torch.float32, device=cuda:0), T=1
+
+    RETURN: (tensor([[-10.2844,  -8.6795,  -7.9632,  -0.0905, -11.4292,  -6.8026,  -5.4990,
+          -9.6410,  -4.0624,  -5.9229, -11.4412,  -7.1534,  -3.6994,  -3.4582,
+          -7.8317,  -8.6301,  -7.2495, -12.1714,  -8.4670,  -6.0773]],
+       device='cuda:0'), tensor([[[ 2.0179e-01, -3.6906e-01],
+         [-1.0999e-01, -1.5527e-01],
+         [ 7.8103e-01, -7.7883e-03],
+         [ 2.2161e+00,  4.5763e-01],
+         [ 2.0247e-01, -1.9267e-01],
+         [ 9.1098e-01,  3.5951e-01],
+         [ 4.2011e-01, ... (truncated)
+
+        CALL: sample_gmm in sketchrnn-pytorch\sketch_rnn\utils\gmm.py:32
+        Arguments: mix_logp=Tensor(shape=(1, 20), dtype=torch.float32, device=cuda:0), means=Tensor(shape=(1, 20, 2), dtype=torch.float32, device=cuda:0), scales=Tensor(shape=(1, 20, 2), dtype=torch.float32, device=cuda:0), corrs=Tensor(shape=(1, 20), dtype=torch.float32, device=cuda:0)
+
+            CALL: compute_cov2d in sketchrnn-pytorch\sketch_rnn\utils\gmm.py:15
+            Arguments: scales=Tensor(shape=(1, 20, 2), dtype=torch.float32, device=cuda:0), corrs=Tensor(shape=(1, 20), dtype=torch.float32, device=cuda:0)
+
+            RETURN: Tensor(shape=(1, 20, 2, 2), dtype=torch.float32, device=cuda:0)
+
+        RETURN: Tensor(shape=(1, 2), dtype=torch.float32, device=cuda:0)
+
+    CALL: forward in sketchrnn-pytorch\sketch_rnn\param_layer.py:19
+    Arguments: self=ParameterLayer(
+  (linear): Linear(in_features=512, out_features=123, bias=True)
+), x=Tensor(shape=(1, 512), dtype=torch.float32, device=cuda:0), T=1
+
+    RETURN: (tensor([[-12.7508, -13.8622,  -4.7312,  -0.5255, -13.2042,  -5.3484,  -6.8111,
+          -9.0694,  -8.5814,  -3.7764, -13.7465,  -4.7175,  -3.1285,  -2.1731,
+          -1.6177,  -6.6799,  -9.5155, -12.6573,  -5.8819,  -6.2842]],
+       device='cuda:0'), tensor([[[ 1.4008e+00,  6.5837e-01],
+         [ 2.1587e+00,  1.1862e+00],
+         [ 1.7398e+00, -5.7156e-03],
+         [ 2.4253e+00,  4.0115e-01],
+         [ 9.2221e-01,  5.4124e-01],
+         [ 1.9972e+00, -2.0120e-01],
+         [ 5.5901e-01, ... (truncated)
+
+    RETURN: (tensor([[ 0.0000,  0.0000],
+        [-0.3742, -0.1417],
+        [ 0.6461,  0.7017]], device='cuda:0'), tensor([0, 0, 1], device='cuda:0'))
+
+    RETURN: (tensor([[ 0.0000,  0.0000],
+        [-0.3742, -0.1417],
+        [ 0.6461,  0.7017]], device='cuda:0'), tensor([0, 0, 1], device='cuda:0'))
+
+        CALL: draw_strokes in sketchrnn-pytorch\infer.py:42
+        Arguments: data=Tensor(shape=(3, 3), dtype=torch.float32, device=cpu), factor=0.02, svg_filename='fake_cat.svg', show=False
+
+            CALL: get_bounds in sketchrnn-pytorch\infer.py:32
+            Arguments: data=array([[ 0.        ,  0.        ,  0.        ],
+       [-0.37419137, -0.14172119,  0.        ],
+       [ 0.64614856,  0.7016525 ,  1.        ]], dtype=float32), factor=0.02
+
+            RETURN: (-18.70957, 13.597859, -7.0860596, 27.996567)
+
+        RETURN: None
+
+    RETURN: None
+

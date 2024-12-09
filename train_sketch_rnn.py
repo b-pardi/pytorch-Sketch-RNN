@@ -6,11 +6,11 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader
 
+
 from sketch_rnn.hparams import hparam_parser
 from sketch_rnn.utils import AverageMeter, ModelCheckpoint
 from sketch_rnn.dataset import SketchRNNDataset, load_strokes, collate_drawings
 from sketch_rnn.model import SketchRNN, model_step
-
 
 
 def train_epoch(model, data_loader, optimizer, scheduler, device,
@@ -114,13 +114,12 @@ def train_sketch_rnn(args):
 
 
 
-if __name__ == '__main__':
-    hp_parser = hparam_parser()
-    parser = argparse.ArgumentParser(parents=[hp_parser])
-    parser.add_argument('--data_dir', type=str, required=True)
-    parser.add_argument('--save_dir', type=str, default=None)
-    parser.add_argument('--num_epochs', type=int, default=200)
-    parser.add_argument('--num_workers', type=int, default=4)
-    args = parser.parse_args()
+def main(args):
+    #train_sketch_rnn(args)
+    print("ETSTSETSETSETse")
 
-    train_sketch_rnn(args)
+if __name__ == '__main__':
+    #train_sketch_rnn(args)
+    print("ETSTSETSETSETse")
+
+    
